@@ -1,0 +1,25 @@
+.step-gamer {
+    display: flex;
+    color: #fff;
+    font-size: 30px;
+    align-items: center;
+    gap: 10px;
+}
+
+.player-x {
+    color: #ff3c3c;
+    text-shadow:
+        0 0 5px #ff3c3c,
+        0 0 10px #ff3c3c,
+        0 0 20px #ff3c3c,
+        0 0 40px #ff0000;
+}
+
+.player-o {
+    color: #3cafff;
+    text-shadow:
+        0 0 5px #3cafff,
+        0 0 10px #3cafff,
+        0 0 20px #3cafff,
+        0 0 40px #00bfff;
+}
