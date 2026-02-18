@@ -1,6 +1,6 @@
 import React from "react";
 import './Field.css'
-
+import PropTypes from 'prop-types';
 
 const FieldLayout = ({ field, onMotion }) => {
 
@@ -15,6 +15,11 @@ const FieldLayout = ({ field, onMotion }) => {
 
         </div>
     )
+}
+
+FieldLayout.propTypes = {
+    onMotion: PropTypes.func.isRequired,
+    field: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default FieldLayout

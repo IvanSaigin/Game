@@ -1,6 +1,6 @@
 import React from "react";
 import './Winner.css'
-
+import PropTypes from 'prop-types';
 
 const WinnerLayout = ({ win }) => {
 
@@ -11,6 +11,13 @@ const WinnerLayout = ({ win }) => {
             <span>О - {win.O}</span>
         </div>
     )
+}
+
+WinnerLayout.propTypes = {
+    win: PropTypes.shape({
+        X: PropTypes.number.isRequired,
+        O: PropTypes.number.isRequired
+    }).isRequired,
 }
 
 export default WinnerLayout

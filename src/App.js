@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
 import AppLayout from './AppLayout'
 
 const WIN_PATTERNS = [
@@ -13,6 +13,10 @@ function App() {
   const [isGameEnded, setIsGameEnded] = useState(false)
   const [isDraw, setIsDraw] = useState(false)
   const [win, setWin] = useState({ X: 0, O: 0 })
+
+  const [stackX, setStackX] = useState([])
+  const [stackO, setstackO] = useState([])
+
 
   const [field, setField] = useState([
     '', '', '',
@@ -34,40 +38,74 @@ function App() {
     })
   }
 
+  const deleteValueStack = (index, currentPlayer, newField) => {
+
+    let updatedField = [...newField];
+
+    if (currentPlayer === 'X') {
+
+      if (stackX.length === 3) {
+        const firstElem = stackX[0];
+
+        setStackX(prev => [...prev.slice(1), index]);
+
+        updatedField[firstElem] = '';
+
+      } else {
+        setStackX(prev => [...prev, index]);
+      }
+
+    } else {
+
+      if (stackO.length === 3) {
+        const firstElem = stackO[0];
+
+        setstackO(prev => [...prev.slice(1), index]);
+
+        updatedField[firstElem] = '';
+
+      } else {
+        setstackO(prev => [...prev, index]);
+      }
+
+    }
+
+    return updatedField;
+  };
+
+
   const onMotion = (index) => {
 
-    if (field[index] || isGameEnded) return
+    if (field[index] || isGameEnded) return;
 
-    const newField = [...field];
+    let newField = [...field];
     newField[index] = currentPlayer;
+
+    newField = deleteValueStack(index, currentPlayer, newField);
+
     setField(newField);
 
-
     if (checkWinner(newField)) {
-      setIsGameEnded(true)
+      setIsGameEnded(true);
       setWin(prev => ({
         ...prev,
         [currentPlayer]: prev[currentPlayer] + 1
       }));
-      return
+      return;
     }
 
-    if (!newField.includes('')) {
-      setIsGameEnded(true)
-      setIsDraw(true)
-      return
-    }
-    setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X')
 
 
-
-  }
+    setCurrentPlayer(prev => prev === 'X' ? 'O' : 'X');
+  };
 
 
   const Restart = () => {
     setIsDraw(false)
     setIsGameEnded(false)
     setField(Array(9).fill(''))
+    setStackX([])
+    setstackO([])
 
   }
 
