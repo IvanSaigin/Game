@@ -1,15 +1,12 @@
+import { useReduxState } from "../../ReduxMeneger";
 import WinnerLayout from "./WinnerLayout"
-import PropTypes from 'prop-types';
 
-const WinnerContainer = ({ win }) => {
+const WinnerContainer = () => {
+
+    const { win } = useReduxState()
+
+
     return <WinnerLayout win={win} />
-}
-
-WinnerContainer.propTypes = {
-    win: PropTypes.shape({
-        X: PropTypes.number.isRequired,
-        O: PropTypes.number.isRequired
-    }).isRequired,
 }
 
 export default WinnerContainer
