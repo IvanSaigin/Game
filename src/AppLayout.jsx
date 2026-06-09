@@ -1,9 +1,8 @@
 import InformationContainer from './components/Information/InformationContainer'
 import FieldContainer from './components/Field/FieldContainer'
 import WinnerContainer from './components/Winner/WinnerContainer'
+import { useDispatch } from 'react-redux';
 import './App.css';
-import PropTypes from 'prop-types';
-import { useDispatch } from './ReduxMeneger'
 import { resetGame } from './action';
 
 const AppLayout = () => {
@@ -24,10 +23,5 @@ const AppLayout = () => {
     )
 
 }
-
-AppLayout.propTypes = {
-    onMotion: PropTypes.func.isRequired,
-}
-
 
 export default AppLayout

@@ -1,0 +1,1 @@
+export const selectStackX = (state) => state.stackX

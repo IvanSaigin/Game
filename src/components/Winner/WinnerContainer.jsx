@@ -1,10 +1,10 @@
-import { useReduxState } from "../../ReduxMeneger";
+import { useSelector } from 'react-redux'
 import WinnerLayout from "./WinnerLayout"
+import { selectWin } from '../../selectors'
 
 const WinnerContainer = () => {
 
-    const { win } = useReduxState()
-
+    const win = useSelector(selectWin)
 
     return <WinnerLayout win={win} />
 }

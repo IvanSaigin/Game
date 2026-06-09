@@ -1,10 +1,13 @@
 import React from "react";
+import { useSelector } from 'react-redux'
+import { selectCurrentPlayer, selectIsDraw, selectIsGameEnded } from '../../selectors'
 import InformationLayout from "./InformationLayout";
-import { useReduxState } from "../../ReduxMeneger";
 
 const InformationContainer = () => {
 
-    const { currentPlayer, isGameEnded, isDraw } = useReduxState()
+    const currentPlayer = useSelector(selectCurrentPlayer)
+    const isGameEnded = useSelector(selectIsGameEnded)
+    const isDraw = useSelector(selectIsDraw)
 
     const massage = isDraw ? 'Ничья' : isGameEnded ? `Победил:` : `Ходит:`
     const playerClass = currentPlayer === 'X' ? 'player-x' : 'player-o'

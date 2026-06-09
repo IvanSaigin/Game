@@ -1,0 +1,1 @@
+export const selectWin = (state) => state.win

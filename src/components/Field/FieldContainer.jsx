@@ -1,8 +1,15 @@
 import React from "react"
 import FieldLayout from "./FieldLayout"
-import { useDispatch, useReduxState } from "../../ReduxMeneger";
+import { useSelector, useDispatch } from 'react-redux'
 import { setField, setIsGameEnded, setStackO, setStackX, setIsDraw, setWin, setCurrentPlayer } from "../../action";
-
+import {
+    selectCurrentPlayer,
+    selectField,
+    selectStackX,
+    selectStackO,
+    selectWin,
+    selectIsGameEnded
+} from '../../selectors';
 const FieldContainer = () => {
 
     const WIN_PATTERNS = [
@@ -11,7 +18,14 @@ const FieldContainer = () => {
         [0, 4, 8], [2, 4, 6]
     ];
 
-    const { currentPlayer, field, stackX, stackO, win, isGameEnded } = useReduxState()
+
+    const currentPlayer = useSelector(selectCurrentPlayer);
+    const field = useSelector(selectField);
+    const stackX = useSelector(selectStackX);
+    const stackO = useSelector(selectStackO);
+    const win = useSelector(selectWin);
+    const isGameEnded = useSelector(selectIsGameEnded);
+
     const dispatch = useDispatch()
 
     const checkWinner = (fieldToCheck) => {
